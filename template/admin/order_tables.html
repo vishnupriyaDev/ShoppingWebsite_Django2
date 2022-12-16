@@ -1,0 +1,48 @@
+{% extends 'admin/headerfooter.html' %}
+    {% block content %}
+		<!-- main content start-->
+		<div id="page-wrapper">
+			<div class="main-page">
+				<div class="tables">
+					<h2 class="title1">Tables</h2>
+					<div class="panel-body widget-shadow">
+						<h4>Order Tables:</h4>
+						<table class="table">
+							<thead>
+								<tr>
+								  <th>#</th>
+								  <th>pid</th>
+								  <th>uid</th>
+								   <th>image</th>
+								  <th>totalamount</th>
+								  <th>quantity</th>
+								  <th>status</th>
+								</tr>
+							</thead>
+							<tbody>
+						    {% for x in details %}
+								<tr>
+								  <th scope="row">{{forloop.counter}}</th>
+								  <td>{{x.pid.name}}</td>
+								  <td>{{x.uid.name}}</td>
+								  <td><img src="{{x.pid.image.url}}" width="200" height="200"></td>
+								  <td>{{x.totalamount}}</td>
+								  <td>{{x.quantity}}</td>
+								  <td>{{x.status}}</td>
+								  <!-- <td><a href="/admin_update/?uid={{x.id}}"><i class="fa fa-edit"></i></a></td>
+								  <td><a href="/admin_delete/?uidd={{x.id}}"><i class="fa fa-trash"></i></a></td> -->
+								</tr>
+						   {% endfor %} 
+							<!--	<tr>
+								  <th scope="row">2</th>
+								  <td>demo1</td>
+								  <td>450</td>
+								  <td>dfhhjhggcgdggg</td>
+								  <td>product/proimg1.jpg</td>
+								  <td>men</td>
+								</tr>-->
+								
+							</tbody>
+						</table>
+					</div>
+					{% endblock %}

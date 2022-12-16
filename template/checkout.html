@@ -1,0 +1,160 @@
+ 
+   {% extends 'headerfooter.html' %}
+{% block content %}
+			<!--banner-->
+		<div class="banner1">
+			<div class="container">
+				<h3><a href="index.html">Home</a> / <span>Checkout</span></h3>
+			</div>
+		</div>
+	<!--banner-->
+
+	<!--content-->
+		<div class="content">
+			<div class="cart-items">
+				<div class="container">
+					 <h2>My Shopping Bag (3)</h2>
+					  {% if cart %}
+						<script>$(document).ready(function(c) {
+							$('.close1').on('click', function(c){
+								$('.cart-header').fadeOut('slow', function(c){
+									$('.cart-header').remove();
+								});
+								});	  
+							});
+					   </script>{% for x in cart %}
+					 <div class="cart-header">
+					 	
+						 <a href="/removecart/?cid={{x.id}}"><div class="close1"> </div></a>
+						 <div class="cart-sec simpleCart_shelfItem">
+								<div class="cart-item cyc">
+									 <img src="{{x.pid.image.url}}" class="img-responsive" alt="">
+								</div>
+							   <div class="cart-item-info">
+								<h3>{{x.pid.name}} <!-- <span>Pickup time:</span> --></h3><br>
+								<h3><span>&#8377; {{x.pid.price}}</span></h3>
+								<ul class="qty">
+									<form action="/updatecart/?cid={{x.id}}" method="POST">
+								{% csrf_token %}
+								<div class="color-quality">
+										
+								<select name="qty" onchange="this.form.submit()">
+									<option value="{{x.quantity}}"selected>{{x.quantity}}</option>
+									<option value="1">1 qty</option>
+									<option value="2">2 qty</option>
+									<option value="3">3 qty</option>
+									<option value="4">4 qty</option>
+									<option value="5">5 qty</option>
+
+								</select>
+							    </div>
+                            </form>
+								</ul>
+									 <div class="delivery">
+									 <p>Service Charges : $10.00</p>
+									 <span>Total Amount:{{x.totalamount}}</span><br>
+
+						
+
+									 <div class="clearfix"></div>
+								</div>	
+							   </div>
+							   <div class="clearfix"></div>
+													
+						  </div>
+						  
+					 </div>
+					 	{% endfor %}
+					 <script>$(document).ready(function(c) {
+							$('.close2').on('click', function(c){
+									$('.cart-header2').fadeOut('slow', function(c){
+								$('.cart-header2').remove();
+							});
+							});	  
+							});
+					 </script>
+					<!-- <div class="cart-header2">
+						 <div class="close2"> </div>
+						  <div class="cart-sec simpleCart_shelfItem">
+								<div class="cart-item cyc">
+									 <img src="/static/images/s1.jpg" class="img-responsive" alt="">
+								</div>
+							   <div class="cart-item-info">
+								<h3><a href="#"> Lorem Ipsum is not simply </a><span>Pickup time:</span></h3>
+								<ul class="qty">
+									<form action="/updatecart/?cid={{x.id}}" method="POST">
+								{% csrf_token %}
+								<select name="qty" onchange="this.form.submit()">
+									<option value="{{x.quantity}}"selected>{{x.quantity}}</option>
+									<option value="1">1 qty</option>
+									<option value="2">2 qty</option>
+									<option value="3">3 qty</option>
+									<option value="4">4 qty</option>
+									<option value="5">5 qty</option>
+
+								</select>
+                            </form>
+
+								</ul>
+									 <div class="delivery">
+									 <p>Service Charges : $10.00</p>
+									 <span>Delivered in 1-1:30 hours</span>
+									 <div class="clearfix"></div>
+								</div>	
+							   </div>
+							   <div class="clearfix"></div>
+													
+						  </div>
+					  </div>
+
+					  <script>$(document).ready(function(c) {
+							$('.close3').on('click', function(c){
+									$('.cart-header3').fadeOut('slow', function(c){
+								$('.cart-header3').remove();
+							});
+							});	  
+							});
+					 </script> -->
+					<!-- <div class="cart-header3">
+						 <div class="close3"> </div>
+							<div class="cart-sec simpleCart_shelfItem">
+								<div class="cart-item cyc">
+									 <img src="/static/images/i7.jpg" class="img-responsive" alt="">
+								</div>
+							   <div class="cart-item-info">
+								<h3><a href="#"> Lorem Ipsum is not simply </a><span>Pickup time:</span></h3>
+								<ul class="qty">
+									<li><p>Min. order value:</p></li>
+									<li><p>FREE delivery</p></li>
+								</ul>
+									 <div class="delivery">
+									 <p>Service Charges : $10.00</p>
+									 <span>Delivered in 1-1:30 hours</span>
+									 <div class="clearfix"></div>
+								</div>	
+							   </div>
+							   <div class="clearfix"></div>
+							</div>
+					</div> -->
+                  <div class="checkout-left">	
+                  <div class="checkout-right-basket animated wow slideInRight" data-wow-delay=".5s">
+                  
+                  <h6> Total Price:{{total}}</h6>
+                 
+				 <div class="text-center">  
+				<button><a href="/"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Back To Shopping</a></button>
+				<button> <a href="/payment_index/?gt={{total}}">proceed by cart</a></button>
+				 </div>
+                   
+				    {%  else %}
+					<p>no item in cart</p>
+					<button onclick="document.location='/'">shop now</button>
+					
+           
+					{% endif %}		
+				</div>
+			</div>
+	<!-- checkout -->	
+		</div>
+					
+{% endblock %}

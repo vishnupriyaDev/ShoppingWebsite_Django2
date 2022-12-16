@@ -1,0 +1,51 @@
+{% extends 'admin/headerfooter.html' %}
+    {% block content %}
+		<!-- main content start-->
+		<div id="page-wrapper">
+			<div class="main-page">
+				<div class="tables">
+					<h2 class="title1">Tables</h2>
+					<div class="panel-body widget-shadow">
+						<h4>Payment Tables:</h4>
+						<table class="table">
+							<thead>
+								<tr>
+								  <th>#</th>
+								  <th>UserName</th>
+								   <!-- <th>image</th> -->
+								    <th>status</th>
+								  <th>total</th>
+								  <th>date</th>
+								  <th>time</th>
+								</tr>
+							</thead>
+							<tbody>
+						    {% for x in details %}
+								<tr>
+								  <th scope="row">{{forloop.counter}}</th>
+								  <td>{{x.uid.name}}</td>
+								  <!-- {% if x.image %} -->
+								  <!-- <td><img src="{{x.image.url}}" width="200" height="200"></td> -->
+								  <!-- {% else %}
+								  {% endif %} -->
+								  <td>{{x.status}}</td>
+								  <td>{{x.total}}</td>
+								  <td>{{x.date}}</td>
+								  <td>{{x.time}}</td>
+								  <td><a href="/downloadpdf/?pid={{x.id}}"><i class="fa fa-file-pdf-o "></i></a></td>
+								  <!-- <td><a href="/admin_delete/?uidd={{x.id}}"><i class="fa fa-trash"></i></a></td> -->
+								</tr>
+						   {% endfor %} 
+							<!--	<tr>
+								  <th scope="row">2</th>
+								  <td>demo1</td>
+								  <td>450</td>
+								  <td>dfhhjhggcgdggg</td>
+								  <td>product/proimg1.jpg</td>
+								  <td>men</td>
+								</tr>-->
+								
+							</tbody>
+						</table>
+					</div>
+					{% endblock %}

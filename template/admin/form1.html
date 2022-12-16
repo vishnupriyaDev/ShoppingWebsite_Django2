@@ -1,0 +1,113 @@
+{% extends 'admin/headerfooter.html' %}
+    {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script >	
+function viewdata()
+{
+	// alert("a");
+	var d=document.getElementById('user').value;
+	$.ajax({
+
+				url:'/myadmin/ajaxview/',
+				data:
+				{
+					'uid':d
+				},
+				datatype: 'json',
+				success: function(data)
+				{
+					document.getElementById("nameid").innerHTML=data.aa;
+					document.getElementById("emailid").innerHTML=data.bb;
+					document.getElementById("phoneid").innerHTML=data.cc;
+					
+
+
+				}
+
+
+			});
+}
+</script>	
+
+		<!-- main content start-->
+		<div id="page-wrapper">
+			<div class="main-page">
+				<div class="forms">
+					<h2 class="title1">Forms</h2>
+					<div class="form-grids row widget-shadow" data-example-id="basic-forms"> 
+						<div class="form-title">
+							<h4>Basic Form :</h4>
+						</div>
+						<div class="form-body">
+							<form >
+							{% csrf_token %}
+							 <div class="form-group">
+							  <label for="exampleInputname">Name</label>
+							  <label for="user"></label>
+                               <select name="user" id="user" onchange="viewdata();">
+                               	<option>Select one</option>
+                               	{% for x in details %}
+                                <option value="{{x.id}}">{{x.name}}</option>
+                                {% endfor %}
+                                <!-- <option value="saab">Saab</option>
+                                <option value="opel">Opel</optio>
+                                <option value="audi">Audi</option> -->
+                               </select>
+  
+
+							  <!-- <input type="name" name="name" class="form-control" id="exampleInputname" placeholder="ProductName"> -->
+							   </div> 
+
+         <!-- <form action="/admin_forms/"> -->
+  <!-- <label for="cars"></label>
+  <select name="cars" id="cars">
+    <option value="volvo">dff</option>
+    <option value="saab">Saab</option>
+    <option value="opel">Opel</option>
+    <option value="audi">Audi</option>
+  </select>
+   -->
+</form>
+
+    
+
+   <div>
+
+		<!-- <div id="page-wrapper"> -->
+			<!-- <div class="main-page"> -->
+				<div class="tables">
+					<h2 class="title1">Tables</h2>
+					<div class="panel-body widget-shadow">
+						<h4>Form1 Tables:</h4>
+						<table class="table">
+							<thead>
+								<tr>
+								  <th>#</th>
+								  <th>Name</th>
+								    <th>Email</th>
+								  <th>Phonenumber</th>
+								 </tr>
+							</thead>
+							<tbody>
+						   
+								<tr>
+								  <th scope="row"></th>
+								  <td id="nameid"></td>
+								 <td id="emailid"></td>
+								  <td id="phoneid"></td>
+								  </tr>
+						  
+							<!--	<tr>
+								  <th scope="row">2</th>
+								  <td>demo1</td>
+								  <td>450</td>
+								  <td>dfhhjhggcgdggg</td>
+								  <td>product/proimg1.jpg</td>
+								  <td>men</td>
+								</tr>-->
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+               {% endblock %}
